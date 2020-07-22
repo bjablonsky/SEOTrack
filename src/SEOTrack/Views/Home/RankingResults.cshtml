@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Search Google Rankings";
+}
+<div class="center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div id="search">
+    <form data-bind="submit: searchGoogle">
+        <p>Please enter the keywords you wish to search for on Google and the url you want to track</p>
+        <span class="searchBox">Keywords: </span><input data-bind="value: keywords" placeholder="Keywords you want to search Google for" />
+        <br />
+        <span class="searchBox">URL: </span><input data-bind="value: searchUrl" placeholder="URL you want to find ranking" />
+        <br />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div id="loading" class="text-center hide">
+    <div class="spinner-border m-5" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div id="results" data-bind="visible: searchResults().length > 0">
+    <h5>Rank Number:</h5>
+    <ul data-bind="foreach: searchResults">
+        <li data-bind="text: rankNum" />
+    </ul>
+</div>
+
+<div id="noResults" data-bind="visible: noResults">
+    <h5>There are no results within the top 100 search results</h5>
+</div>
+
+<div id="error" class="alert alert-danger" data-bind="visible: error">
+    <span>There was an error in your search. Please try again.</span>
+</div>
+
